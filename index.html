@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portes ouvertes 2027 · Après le bac STD2A</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b1530; --paper:#fffaf2; --muted:#6b6380;
+  --art:#ff4f6d; --art-soft:#ffe1e6;
+  --uni:#2f6bff; --uni-soft:#dde7ff;
+  --autre:#12a37f; --autre-soft:#d4f5ea;
+  --sun:#ffc531; --violet:#8b5cf6;
+  --radius:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5;overflow-x:hidden}
+h1,h2,h3,.display{font-family:"Bricolage Grotesque","DM Sans",sans-serif}
+a{color:inherit}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;padding:56px 24px 90px;overflow:hidden;color:#fff;
+  background:linear-gradient(120deg,#ff4f6d,#8b5cf6,#2f6bff,#12a37f,#ffc531,#ff4f6d);
+  background-size:400% 400%;animation:flow 18s ease infinite}
+@keyframes flow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.blob{position:absolute;border-radius:50%;filter:blur(2px);opacity:.35;mix-blend-mode:overlay;animation:float 12s ease-in-out infinite}
+.blob.b1{width:260px;height:260px;background:#fff;top:-60px;right:8%}
+.blob.b2{width:140px;height:140px;background:#ffc531;bottom:20px;left:6%;animation-delay:-4s}
+.blob.b3{width:90px;height:90px;background:#fff;top:40%;right:35%;animation-delay:-8s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,-25px) scale(1.08)}}
+.shape{position:absolute;opacity:.9;animation:spin 20s linear infinite}
+.shape.s1{right:6%;bottom:30px;width:70px}
+.shape.s2{left:48%;top:24px;width:46px;animation-duration:14s;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-inner{max-width:1180px;margin:0 auto;position:relative;z-index:2}
+.tag{display:inline-block;background:rgba(255,255,255,.22);backdrop-filter:blur(6px);padding:6px 14px;border-radius:99px;font-weight:700;font-size:.85rem;letter-spacing:.04em}
+.hero h1{font-size:clamp(2.2rem,6vw,4.4rem);line-height:1.02;font-weight:800;margin:16px 0 12px;max-width:820px;letter-spacing:-.02em}
+.hero h1 span{display:inline-block;animation:pop .8s cubic-bezier(.2,1.6,.4,1) both}
+.hero h1 span:nth-child(2){animation-delay:.12s}.hero h1 span:nth-child(3){animation-delay:.24s}
+@keyframes pop{from{opacity:0;transform:translateY(30px) rotate(-4deg)}to{opacity:1;transform:none}}
+.hero p.lead{font-size:1.1rem;max-width:640px;opacity:.95}
+.next{margin-top:26px;display:inline-flex;align-items:center;gap:16px;background:#fff;color:var(--ink);border-radius:18px;padding:14px 20px;box-shadow:0 12px 30px rgba(27,21,48,.25);animation:pop .8s .4s both}
+.next .count{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:2.2rem;font-weight:800;color:var(--art);line-height:1}
+.next small{display:block;color:var(--muted);font-size:.8rem}
+.wave{position:absolute;bottom:-1px;left:0;width:100%;height:60px;z-index:3}
+
+/* ---------- NAV / FILTRES ---------- */
+.bar{position:sticky;top:0;z-index:20;background:rgba(255,250,242,.9);backdrop-filter:blur(10px);border-bottom:1px solid #eee3d3}
+.bar-inner{max-width:1180px;margin:0 auto;padding:12px 24px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:2px solid var(--ink);background:#fff;border-radius:99px;padding:7px 14px;font:600 .9rem "DM Sans",system-ui,sans-serif;cursor:pointer;transition:transform .15s,background .2s,color .2s}
+.chip:hover{transform:translateY(-2px)}
+.chip.on{background:var(--ink);color:#fff}
+.chip[data-cat="art"].on{background:var(--art);border-color:var(--art)}
+.chip[data-cat="uni"].on{background:var(--uni);border-color:var(--uni)}
+.chip[data-cat="autre"].on{background:var(--autre);border-color:var(--autre)}
+.chip[data-fav].on{background:var(--sun);border-color:var(--sun);color:var(--ink)}
+.sep{width:1px;height:28px;background:#ddd2c0;margin:0 4px}
+.search{flex:1;min-width:200px;position:relative}
+.search input{width:100%;border:2px solid #e6dccb;border-radius:99px;padding:9px 16px 9px 40px;font:500 .95rem "DM Sans",system-ui,sans-serif;background:#fff;outline:none;transition:border-color .2s}
+.search input:focus{border-color:var(--violet)}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;opacity:.5}
+.views{display:flex;background:#efe6d6;border-radius:99px;padding:4px}
+.views button{border:0;background:none;border-radius:99px;padding:7px 14px;font:700 .85rem "DM Sans",system-ui,sans-serif;cursor:pointer;color:var(--muted)}
+.views button.on{background:#fff;color:var(--ink);box-shadow:0 2px 6px rgba(0,0,0,.08)}
+
+/* ---------- CONTENU ---------- */
+main{max-width:1180px;margin:0 auto;padding:30px 24px 60px}
+.section-title{display:flex;align-items:center;gap:12px;margin:34px 0 16px;font-size:1.6rem;font-weight:800}
+.section-title .dot{width:16px;height:16px;border-radius:50%}
+.section-title small{font:500 .9rem "DM Sans",system-ui,sans-serif;color:var(--muted)}
+.sub-title{font:700 .8rem "DM Sans",system-ui,sans-serif;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:20px 0 12px;display:flex;align-items:center;gap:8px}
+.sub-title::after{content:"";flex:1;height:2px;background:repeating-linear-gradient(90deg,#ddd2c0 0 6px,transparent 6px 12px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+.empty{padding:40px;text-align:center;color:var(--muted);font-size:1.1rem}
+
+.card{position:relative;background:#fff;border-radius:var(--radius);padding:22px 22px 18px;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--c);
+  display:flex;flex-direction:column;gap:10px;opacity:0;transform:translateY(24px);transition:transform .25s,box-shadow .25s}
+.card.in{animation:rise .55s cubic-bezier(.2,.9,.3,1.2) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+.card:hover{transform:translate(-3px,-3px)!important;box-shadow:10px 10px 0 var(--c)}
+.card[data-cat="art"]{--c:var(--art);--s:var(--art-soft)}
+.card[data-cat="uni"]{--c:var(--uni);--s:var(--uni-soft)}
+.card[data-cat="autre"]{--c:var(--autre);--s:var(--autre-soft)}
+.card .top{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding-right:36px}
+.badge{font:700 .72rem "DM Sans",system-ui,sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:4px 10px;border-radius:99px;background:var(--s);color:var(--c)}
+.badge.zone{background:#f3eee6;color:var(--muted)}
+.badge.soon{background:var(--sun);color:var(--ink);animation:pulse 1.6s ease-in-out infinite}
+.badge.past{background:#eee;color:#999}
+@keyframes pulse{50%{transform:scale(1.08)}}
+.card h3{font-size:1.3rem;line-height:1.15;font-weight:800}
+.card .place{color:var(--muted);font-size:.9rem;margin-top:-6px}
+.card .desc{font-size:.93rem}
+.jpo{background:var(--s);border-radius:14px;padding:12px 14px;display:flex;gap:12px;align-items:flex-start}
+.jpo .ico{flex:none;width:44px;height:44px;border-radius:12px;background:var(--c);color:#fff;display:grid;place-items:center;font:800 .75rem "Bricolage Grotesque",system-ui,sans-serif;text-align:center;line-height:1.05}
+.jpo .ico b{display:block;font-size:1.15rem}
+.jpo .txt{font-size:.92rem}
+.jpo .txt strong{display:block;font-size:.98rem}
+.jpo.tbc .ico{background:#fff;color:var(--c);border:2px dashed var(--c)}
+.extra{font-size:.85rem;color:var(--muted);border-left:3px solid var(--c);padding-left:10px}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px}
+.btn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font:700 .85rem "DM Sans",system-ui,sans-serif;padding:8px 14px;border-radius:99px;border:2px solid var(--ink);background:#fff;transition:background .2s,color .2s,transform .15s;cursor:pointer}
+.btn:hover{background:var(--ink);color:#fff;transform:translateY(-2px)}
+.btn.main{background:var(--c);border-color:var(--c);color:#fff}
+.btn.main:hover{background:var(--ink);border-color:var(--ink)}
+.btn.cal{border-style:dashed}
+.fav{position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;border:2px solid #e6dccb;background:#fff;cursor:pointer;display:grid;place-items:center;font-size:1.05rem;transition:transform .2s}
+.fav:hover{transform:scale(1.15) rotate(12deg)}
+.fav.on{background:var(--sun);border-color:var(--sun);animation:boing .4s}
+@keyframes boing{40%{transform:scale(1.35) rotate(-12deg)}}
+
+/* ---------- CALENDRIER ---------- */
+.month{margin-bottom:28px}
+.month h3{font-size:1.5rem;font-weight:800;margin-bottom:12px;display:flex;align-items:baseline;gap:10px}
+.month h3 span{font:500 .9rem "DM Sans",system-ui,sans-serif;color:var(--muted)}
+.ev{display:grid;grid-template-columns:86px 1fr auto;gap:16px;align-items:center;background:#fff;border:2px solid var(--ink);border-radius:18px;padding:12px 16px;margin-bottom:10px;opacity:0;transform:translateX(-20px);box-shadow:4px 4px 0 var(--c)}
+.ev.in{animation:slide .45s ease forwards}
+@keyframes slide{to{opacity:1;transform:none}}
+.ev[data-cat="art"]{--c:var(--art);--s:var(--art-soft)}
+.ev[data-cat="uni"]{--c:var(--uni);--s:var(--uni-soft)}
+.ev[data-cat="autre"]{--c:var(--autre);--s:var(--autre-soft)}
+.ev .d{text-align:center;background:var(--s);border-radius:12px;padding:6px 0;color:var(--c)}
+.ev .d b{display:block;font:800 1.8rem/1 "Bricolage Grotesque",system-ui,sans-serif}
+.ev .d small{font:700 .72rem "DM Sans",system-ui,sans-serif;text-transform:uppercase}
+.ev h4{font:800 1.05rem "Bricolage Grotesque",system-ui,sans-serif}
+.ev p{font-size:.85rem;color:var(--muted)}
+.ev.past{opacity:.45!important;filter:grayscale(.6)}
+.ev .go{white-space:nowrap}
+
+/* ---------- CONSEILS ---------- */
+.tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:10px}
+.tip{border-radius:var(--radius);padding:22px;color:#fff;position:relative;overflow:hidden}
+.tip:nth-child(1){background:var(--art)}.tip:nth-child(2){background:var(--violet)}.tip:nth-child(3){background:var(--uni)}.tip:nth-child(4){background:var(--autre)}
+.tip h4{font:800 1.15rem "Bricolage Grotesque",system-ui,sans-serif;margin-bottom:6px}
+.tip p{font-size:.92rem;opacity:.95}
+.tip::after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.15);right:-30px;bottom:-40px;transition:transform .4s}
+.tip:hover::after{transform:scale(1.6)}
+
+footer{text-align:center;padding:30px 24px 50px;color:var(--muted);font-size:.85rem}
+.totop{position:fixed;right:20px;bottom:20px;width:50px;height:50px;border-radius:50%;border:none;background:var(--ink);color:#fff;font-size:1.3rem;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:30}
+.totop.show{opacity:1;pointer-events:auto}
+.totop:hover{transform:translateY(-4px)}
+
+@media (max-width:640px){
+  .ev{grid-template-columns:64px 1fr}
+  .ev .go{grid-column:1/-1}
+  .sep{display:none}
+  .grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.card,.ev{opacity:1;transform:none}}
+@media print{.bar,.totop,.hero .blob,.hero .shape{display:none}.card{opacity:1;transform:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <svg class="shape s1" viewBox="0 0 100 100"><polygon points="50,0 61,35 98,35 68,57 79,91 50,70 21,91 32,57 2,35 39,35" fill="#ffc531"/></svg>
+  <svg class="shape s2" viewBox="0 0 100 100"><rect x="15" y="15" width="70" height="70" rx="14" fill="none" stroke="#fff" stroke-width="10"/></svg>
+  <div class="hero-inner">
+    <span class="tag">ESAAT · 1<sup>re</sup> STD2A · Orientation post-bac</span>
+    <h1><span>Portes</span> <span>ouvertes</span> <span>2027 ✦</span></h1>
+    <p class="lead">Écoles d'art, universités, BUT, prépa, architecture : toutes les dates pour aller voir sur place, rencontrer les étudiants et montrer son book.</p>
+    <div class="next" id="next"></div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,70 480,0 720,25 C960,50 1200,5 1440,30 L1440,60 L0,60 Z" fill="#fffaf2"/></svg>
+</header>
+
+<nav class="bar">
+  <div class="bar-inner">
+    <div class="chips" id="cats">
+      <button class="chip on" data-cat="all">Tout</button>
+      <button class="chip" data-cat="art">🎨 Écoles d'art</button>
+      <button class="chip" data-cat="uni">🎓 Universités</button>
+      <button class="chip" data-cat="autre">🧭 BUT · Prépa · Archi</button>
+    </div>
+    <span class="sep"></span>
+    <div class="chips" id="zones">
+      <button class="chip on" data-zone="all">Partout</button>
+      <button class="chip" data-zone="region">📍 Hauts-de-France</button>
+      <button class="chip" data-zone="national">🇫🇷 Ailleurs en France</button>
+      <button class="chip" data-fav>★ Mes favoris</button>
+    </div>
+    <label class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      <input id="q" type="search" placeholder="Chercher : design, animation, Lille, mode…">
+    </label>
+    <div class="views">
+      <button class="on" data-view="cards">Fiches</button>
+      <button data-view="cal">Calendrier</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div id="out"></div>
+
+  <h2 class="section-title" id="conseils"><span class="dot" style="background:var(--sun)"></span>Bon à savoir</h2>
+  <div class="tips">
+    <div class="tip"><h4>Changer de posture</h4><p>En école supérieure d'art (ESÄ, ÉSAD, Beaux-Arts…), on attend une démarche personnelle, critique et expérimentale, moins encadrée qu'en DN MADE.</p></div>
+    <div class="tip"><h4>Le budget des concours</h4><p>Chaque école organise son propre concours, avec des frais d'inscription (en général 35 € à 60 € par école, gratuits ou réduits pour les boursiers). Mieux vaut cibler 3 à 5 écoles en parallèle des vœux DN MADE sur Parcoursup.</p></div>
+    <div class="tip"><h4>Université : le dossier d'abord</h4><p>Contrairement aux DN MADE (book demandé dès la candidature), la plupart des licences publiques regardent d'abord les notes (français, philo, spécialités artistiques) et le projet de formation motivé : il faut expliquer pourquoi on choisit une voie plus théorique et réflexive.</p></div>
+    <div class="tip"><h4>D'autres licences possibles</h4><p>Avec un bon niveau rédactionnel : Licence Histoire de l'art et archéologie (Lille, Paris…) ou Licence Information-Communication (métiers de la culture ou médias).</p></div>
+  </div>
+</main>
+
+<footer>Informations reprises des documents d'orientation de l'ESAAT. Les dates « à confirmer » sont à vérifier sur le site de chaque établissement.<br>Le ★ enregistre tes favoris sur cet ordinateur.</footer>
+<button class="totop" id="totop" aria-label="Revenir en haut">↑</button>
+
+<script>
+const DATA = [
+/* ===== ÉCOLES D'ART — HAUTS-DE-FRANCE ===== */
+{cat:"art",zone:"region",name:"ESÄ — École supérieure d'art",place:"Dunkerque & Tourcoing (2 sites)",
+ desc:"DNA / DNSEP option Art : art contemporain, pratiques d'atelier, sciences et nature à Tourcoing ; espaces et création à Dunkerque.",
+ jpo:"Tourcoing : ven. 5 février 2027 (samedi 6 à confirmer) · Dunkerque : ven. 5 et sam. 6 février 2027",
+ dates:[["2027-02-05","Tourcoing"],["2027-02-05","Dunkerque"],["2027-02-06","Dunkerque"]],
+ links:[["Site de l'école","https://www.esa-n.info"]]},
+{cat:"art",zone:"region",name:"ÉSAD Valenciennes",place:"Valenciennes",
+ desc:"DNA / DNSEP options Art ou Design (design d'espace, design d'objet, scénographie).",
+ jpo:"Généralement début février",tbc:"début fév.",
+ links:[["Site de l'école","https://www.esad-valenciennes.fr"]]},
+{cat:"art",zone:"region",name:"ÉSAD Amiens",place:"Amiens",
+ desc:"DNA / DNSEP options Design graphique ou Images animées (3D, cinéma d'animation — cursus très réputé).",
+ jpo:"Généralement fin janvier",tbc:"fin janv.",
+ links:[["Site de l'école","https://www.esad-amiens.design"]]},
+{cat:"art",zone:"region",name:"Ésac Cambrai",place:"Cambrai",
+ desc:"DNA / DNSEP option Communication : design graphique, édition, identité visuelle, création numérique.",
+ jpo:"Vendredi 22 et samedi 23 janvier 2027",
+ dates:[["2027-01-22",""],["2027-01-23",""]],
+ links:[["Site de l'école","https://www.esac-cambrai.net"]]},
+
+/* ===== ÉCOLES D'ART — NATIONAL ===== */
+{cat:"art",zone:"national",name:"Écoles supérieures d'arts appliqués de Paris",place:"Paris · Boulle, Duperré, Estienne, ENSAAMA",
+ desc:"DN MADE (3 ans) puis DSAA (2 ans) dans des pôles d'excellence : espace / métiers d'art (Boulle), mode / textile (Duperré), graphisme / livre (Estienne), objet / matériaux (ENSAAMA).",
+ jpo:"Vendredi 29 et samedi 30 janvier 2027",extra:"Sur inscription préalable pour la plupart.",
+ dates:[["2027-01-29",""],["2027-01-30",""]],
+ links:[["Boulle","https://www.ecole-boulle.org"],["Duperré","https://www.duperre.org"],["Estienne","https://www.ecole-estienne.paris"],["ENSAAMA","https://www.ensaama.net"]]},
+{cat:"art",zone:"national",name:"École des Arts Décoratifs — PSL (ENSAD)",place:"Paris",
+ desc:"Diplôme de l'ENSAD (grade de Master, 5 ans), 10 secteurs : design objet, espace, vêtement, textile, graphisme, animation, scénographie… Très sélectif (~4 % d'admission).",
+ jpo:"Vendredi 29 et samedi 30 janvier 2027",
+ dates:[["2027-01-29",""],["2027-01-30",""]],
+ links:[["Site de l'école","https://www.ensad.fr"]]},
+{cat:"art",zone:"national",name:"ENSCI — Les Ateliers",place:"Paris",
+ desc:"Diplôme de Créateur industriel (grade de Master, 5 ans) et Designer textile. Seule école nationale dédiée uniquement au design industriel et d'innovation.",
+ jpo:"Généralement fin janvier",tbc:"fin janv.",extra:"Inscription sur ensci.com.",
+ links:[["Site de l'école","https://www.ensci.com"]]},
+{cat:"art",zone:"national",name:"HEAR — Haute école des arts du Rhin",place:"Strasbourg & Mulhouse",
+ desc:"DNA / DNSEP très complets : Art, Design (objet, textile à Mulhouse, scénographie) et Communication (illustration, didactique visuelle, graphisme).",
+ jpo:"Généralement début février",tbc:"début fév.",
+ links:[["Site de l'école","https://www.hear.fr"]]},
+{cat:"art",zone:"national",name:"ENSBA Lyon — Beaux-Arts de Lyon",place:"Lyon",
+ desc:"DNA / DNSEP options Art, Design (espace, graphique, textile) et Médias.",
+ jpo:"Généralement fin janvier",tbc:"fin janv.",
+ links:[["Site de l'école","https://www.ensba-lyon.fr"]]},
+{cat:"art",zone:"national",name:"Beaux-Arts de Paris",place:"Paris",
+ desc:"DNSAP (grade de Master, 5 ans). Orientation exclusivement tournée vers les arts plastiques et la pratique d'artiste (pas de design appliqué).",
+ jpo:"Généralement fin janvier",tbc:"fin janv.",
+ links:[["Site de l'école","https://www.beauxartsparis.fr"]]},
+
+/* ===== UNIVERSITÉS — HAUTS-DE-FRANCE ===== */
+{cat:"uni",zone:"region",name:"Université de Lille",place:"Site de Tourcoing (arts plastiques)",
+ desc:"Licence mention Arts — Parcours Arts plastiques et visuels. Accès très ouvert, orientation vers la création contemporaine et l'enseignement.",
+ jpo:"Samedi 30 janvier 2027",extra:"29-31 rue Leverrier à Tourcoing.",
+ dates:[["2027-01-30",""]],
+ links:[["Site de l'université","https://www.univ-lille.fr"]]},
+{cat:"uni",zone:"region",name:"UPHF — Université polytechnique Hauts-de-France",place:"Valenciennes · Campus du Mont Houy",
+ desc:"Licence mention Arts — Parcours Arts plastiques (120 places) ou Arts numériques (30 places, sélectif, orienté création digitale et médias).",
+ jpo:"Samedi 6 février 2027",
+ dates:[["2027-02-06",""]],
+ links:[["Site de l'université","https://www.uphf.fr"]]},
+{cat:"uni",zone:"region",name:"Université catholique de Lille — École LiDD",place:"Lille · privé sous contrat",
+ desc:"Licence mention Arts — Parcours Design (50 places), pédagogie par projet, diplôme national d'État, frais de scolarité élevés.",
+ jpo:"Samedi 28 novembre 2026, de 9 h 30 à 16 h 30",extra:"Accompagnement book sur rendez-vous.",
+ dates:[["2026-11-28","9 h 30 – 16 h 30"]],
+ links:[["S'inscrire à la JPO","https://my.weezevent.com/jpo-univ-catholille",true],["Site de l'université","https://www.univ-catholille.fr"]]},
+{cat:"uni",zone:"region",name:"UPJV — Université de Picardie Jules Verne",place:"Amiens · UFR des Arts",
+ desc:"Licence mention Arts — Parcours Arts plastiques.",
+ jpo:"Samedi 13 février 2027",
+ dates:[["2027-02-13",""]],
+ links:[["Site de l'université","https://www.u-picardie.fr"]]},
+
+/* ===== UNIVERSITÉS — NATIONAL ===== */
+{cat:"uni",zone:"national",name:"Université Toulouse — Jean Jaurès",place:"Toulouse & ISCID à Montauban",
+ desc:"Licence Arts — Parcours Design, Prospective et Sociétés (Toulouse, 65 places, sélectif) et Parcours Couleur, Image, Design (CID) à l'ISCID (Montauban, 60 places).",
+ jpo:"Sam. 30 janvier 2027 (ISCID Montauban) · Sam. 6 février 2027 (campus Mirail, Toulouse)",
+ dates:[["2027-01-30","ISCID Montauban"],["2027-02-06","Campus Mirail, Toulouse"]],
+ links:[["Site de l'université","https://www.univ-tlse2.fr"]]},
+{cat:"uni",zone:"national",name:"Université de Strasbourg",place:"Strasbourg",
+ desc:"Licence Arts — Parcours Design graphique et numérique (100 places) ou Arts plastiques (100 places).",
+ jpo:"Généralement fin janvier / début février",tbc:"fin janv.",
+ links:[["Site de l'université","https://www.unistra.fr"]]},
+{cat:"uni",zone:"national",name:"Université Paris 1 Panthéon-Sorbonne",place:"Paris · École des Arts de la Sorbonne",
+ desc:"Licence Arts plastiques : tronc commun en L1-L2, puis orientation sélective en L3 vers le parcours Design, arts, médias.",
+ jpo:"Samedis 23 janvier, 30 janvier et 27 février 2027",
+ dates:[["2027-01-23",""],["2027-01-30",""],["2027-02-27",""]],
+ links:[["Site de l'université","https://www.pantheonsorbonne.fr"]]},
+{cat:"uni",zone:"national",name:"Université Bordeaux Montaigne",place:"Bordeaux",
+ desc:"Licence Arts — Parcours Design (38 places, sélectif) ou Arts plastiques.",
+ jpo:"Généralement fin janvier",tbc:"fin janv.",
+ links:[["Site de l'université","https://www.u-bordeaux-montaigne.fr"]]},
+{cat:"uni",zone:"national",name:"Nîmes Université",place:"Nîmes",
+ desc:"Licence Arts — Parcours Design (180 places), très réputée pour son approche en design social et d'innovation.",
+ jpo:"Samedi 6 ou lundi 8 février 2027 (selon les composantes)",
+ dates:[["2027-02-06","selon composantes"],["2027-02-08","selon composantes"]],
+ links:[["Site de l'université","https://www.unimes.fr"]]},
+{cat:"uni",zone:"national",name:"Université Gustave Eiffel",place:"Champs-sur-Marne",
+ desc:"Licence Arts — Parcours Études visuelles, médias et arts numériques (60 places).",
+ jpo:"Samedi 30 janvier 2027",
+ dates:[["2027-01-30",""]],
+ links:[["Site de l'université","https://www.univ-gustave-eiffel.fr"]]},
+
+/* ===== AUTRES FORMATIONS ===== */
+{cat:"autre",zone:"region",type:"BUT MMI",name:"IUT de Lille — site de Tourcoing",place:"Tourcoing · pôle art et design de la métropole",
+ desc:"BUT Métiers du multimédia et de l'internet : très prisé des STD2A pour le webdesign, le design UX/UI ou la communication digitale. Environnement technologique et créatif proche du design interactif. Parcoursup : dossier, goût pour le numérique, culture visuelle.",
+ jpo:"Samedi 30 janvier 2027, de 9 h à 17 h",extra:"Inscription préalable généralement demandée sur le site de l'Université de Lille. Autres BUT Info-Com sur place : Communication des organisations, Métiers du livre et du patrimoine.",
+ dates:[["2027-01-30","9 h – 17 h"]],
+ links:[["Site de l'IUT","https://www.iut.univ-lille.fr"],["BUT Communication des organisations","https://formation.univ-lille.fr/fr/offre-de-formation/but-BUT/bachelor-universitaire-de-technologie-information-communication-MG082625/communication-des-organisations-MX082627.html"],["BUT Métiers du livre et du patrimoine","https://formation.univ-lille.fr/fr/offre-de-formation/but-BUT/bachelor-universitaire-de-technologie-information-communication-MG082625/metiers-du-livre-et-du-patrimoine-MX082628.html"]]},
+{cat:"autre",zone:"region",type:"BUT MMI",name:"IUT de Valenciennes (UPHF)",place:"Valenciennes · Campus du Mont Houy",
+ desc:"Second BUT MMI public de la région. Cursus professionnalisant en 3 ans (grade de Licence) : création numérique, développement web et stratégie de communication. Accès sur Parcoursup.",
+ jpo:"Samedi 6 février 2027, de 9 h à 17 h",
+ dates:[["2027-02-06","9 h – 17 h"]],
+ links:[["Site de l'IUT","https://www.uphf.fr/iut"]]},
+{cat:"autre",zone:"region",type:"CPES-CAAP",name:"Lycée Jean-Prouvé — CPES-CAAP",place:"Lomme",
+ desc:"Classe préparatoire publique et gratuite d'un an : consolider son book, développer une démarche personnelle et préparer les concours des grandes écoles d'art ou d'architecture. Dessin, pratiques plastiques contemporaines, culture artistique. Parcoursup : dossier scolaire + portfolio.",
+ jpo:"Samedi 23 janvier 2027, de 9 h à 16 h 30",
+ dates:[["2027-01-23","9 h – 16 h 30"]],
+ links:[["Site du lycée","https://jprouve-lomme.etab.ac-lille.fr"]]},
+{cat:"autre",zone:"region",type:"Architecture",name:"ENSAP Lille — Architecture et paysage",place:"Villeneuve-d'Ascq · Université de Lille",
+ desc:"DEEA (grade de Licence, 3 ans) puis Diplôme d'État d'architecte (grade de Master, 5 ans), avec une 1re année commune architecture et paysage. Profil STD2A apprécié (dessin technique, maquette, sens de l'espace) avec un dossier solide en matières générales. Parcoursup + entretien oral.",
+ jpo:"Samedi 30 janvier 2027, de 9 h à 17 h",extra:"Conférences de présentation en amphithéâtre à 10 h, 12 h et 14 h.",
+ dates:[["2027-01-30","9 h – 17 h"]],
+ links:[["Site de l'école","https://www.lille.archi.fr"]]}
+];
+
+const CAT = {art:{label:"École d'art",title:"Écoles d'art",color:"var(--art)"},uni:{label:"Université",title:"Universités",color:"var(--uni)"},autre:{label:"BUT · Prépa · Archi",title:"BUT MMI, CPES-CAAP, architecture",color:"var(--autre)"}};
+const MOIS = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+const MOIS_C = ["janv","févr","mars","avr","mai","juin","juil","août","sept","oct","nov","déc"];
+const JOURS = ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."];
+const today = new Date(); today.setHours(0,0,0,0);
+DATA.forEach((d,i)=>d.id="e"+i);
+
+const D = s => { const [y,m,dd]=s.split("-").map(Number); return new Date(y,m-1,dd); };
+const days = s => Math.round((D(s)-today)/864e5);
+
+let favs = new Set();
+try{ favs = new Set(JSON.parse(localStorage.getItem("jpo-favs")||"[]")); }catch(e){}
+const saveFavs = ()=>{ try{ localStorage.setItem("jpo-favs",JSON.stringify([...favs])); }catch(e){} };
+
+const state = {cat:"all",zone:"all",fav:false,q:"",view:"cards"};
+const norm = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+
+function matches(d){
+  if(state.cat!=="all" && d.cat!==state.cat) return false;
+  if(state.zone!=="all" && d.zone!==state.zone) return false;
+  if(state.fav && !favs.has(d.id)) return false;
+  if(state.q){
+    const hay = norm([d.name,d.place,d.desc,d.jpo,d.extra||"",d.type||"",CAT[d.cat].label].join(" "));
+    return norm(state.q).split(/\s+/).every(w=>hay.includes(w));
+  }
+  return true;
+}
+
+function nextDate(d){
+  if(!d.dates) return null;
+  const fut = d.dates.map(x=>x[0]).filter(x=>days(x)>=0).sort();
+  return fut[0]||null;
+}
+
+function ics(d,date,where){
+  const s = date.replace(/-/g,""); const e = new Date(D(date).getTime()+864e5);
+  const ee = e.getFullYear()+String(e.getMonth()+1).padStart(2,"0")+String(e.getDate()).padStart(2,"0");
+  const txt = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//ESAAT//JPO//FR","BEGIN:VEVENT",
+    "UID:"+d.id+s+"@jpo-esaat","DTSTART;VALUE=DATE:"+s,"DTEND;VALUE=DATE:"+ee,
+    "SUMMARY:JPO "+d.name.replace(/,/g,"\\,"),"LOCATION:"+(where||d.place).replace(/,/g,"\\,"),
+    "DESCRIPTION:"+(d.jpo+(d.extra?" — "+d.extra:"")).replace(/,/g,"\\,"),
+    "URL:"+d.links[0][1],"END:VEVENT","END:VCALENDAR"].join("\r\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([txt],{type:"text/calendar"}));
+  a.download = "JPO-"+d.name.split(/[—(]/)[0].trim().replace(/[^\w]+/g,"-")+".ics";
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
+function badgeFor(d){
+  const n = nextDate(d);
+  if(n){ const k=days(n);
+    if(k===0) return '<span class="badge soon">C\'est aujourd\'hui !</span>';
+    if(k<=30) return `<span class="badge soon">Dans ${k} jour${k>1?"s":""}</span>`;
+    return "";
+  }
+  if(d.dates) return '<span class="badge past">Passée</span>';
+  return "";
+}
+
+function card(d){
+  const n = nextDate(d) || (d.dates && d.dates[0][0]);
+  let ico;
+  if(n){ const dt=D(n); ico=`<div class="ico"><b>${dt.getDate()}</b>${MOIS_C[dt.getMonth()]}</div>`; }
+  else ico=`<div class="ico">à<br>conf.</div>`;
+  const links = d.links.map(([l,u,main],i)=>`<a class="btn ${main||(!d.links.some(x=>x[2])&&i===0)?"main":""}" href="${u}" target="_blank" rel="noopener">${l} ↗</a>`).join("");
+  const cal = nextDate(d) ? `<button class="btn cal" data-ics="${d.id}">📅 Agenda</button>` : "";
+  return `<article class="card" data-cat="${d.cat}">
+    <button class="fav ${favs.has(d.id)?"on":""}" data-fav="${d.id}" title="Ajouter à mes favoris">${favs.has(d.id)?"★":"☆"}</button>
+    <div class="top"><span class="badge">${d.type||CAT[d.cat].label}</span><span class="badge zone">${d.zone==="region"?"Hauts-de-France":"National"}</span>${badgeFor(d)}</div>
+    <h3>${d.name}</h3><div class="place">📍 ${d.place}</div>
+    <p class="desc">${d.desc}</p>
+    <div class="jpo ${n?"":"tbc"}">${ico}<div class="txt"><strong>Portes ouvertes</strong>${d.jpo}${n?"":" — calendrier 2027 à vérifier sur le site"}</div></div>
+    ${d.extra?`<p class="extra">${d.extra}</p>`:""}
+    <div class="links">${links}${cal}</div>
+  </article>`;
+}
+
+function renderCards(list){
+  let html="";
+  for(const c of ["art","uni","autre"]){
+    const inCat = list.filter(d=>d.cat===c); if(!inCat.length) continue;
+    html += `<h2 class="section-title"><span class="dot" style="background:${CAT[c].color}"></span>${CAT[c].title}<small>${inCat.length} établissement${inCat.length>1?"s":""}</small></h2>`;
+    for(const z of ["region","national"]){
+      const g = inCat.filter(d=>d.zone===z); if(!g.length) continue;
+      html += `<div class="sub-title">${z==="region"?"📍 En Hauts-de-France":"🇫🇷 Ailleurs en France"}</div><div class="grid">${g.map(card).join("")}</div>`;
+    }
+  }
+  return html;
+}
+
+function renderCal(list){
+  const evs=[];
+  list.forEach(d=>(d.dates||[]).forEach(([dt,w])=>evs.push({d,dt,w})));
+  evs.sort((a,b)=>a.dt.localeCompare(b.dt)||a.d.name.localeCompare(b.d.name));
+  const byMonth={};
+  evs.forEach(e=>{const k=e.dt.slice(0,7);(byMonth[k]=byMonth[k]||[]).push(e);});
+  let html="";
+  for(const k of Object.keys(byMonth)){
+    const [y,m]=k.split("-").map(Number);
+    html+=`<section class="month"><h3>${MOIS[m-1][0].toUpperCase()+MOIS[m-1].slice(1)} ${y}<span>${byMonth[k].length} journée${byMonth[k].length>1?"s":""}</span></h3>`;
+    for(const e of byMonth[k]){
+      const dt=D(e.dt), k2=days(e.dt);
+      html+=`<div class="ev ${k2<0?"past":""}" data-cat="${e.d.cat}">
+        <div class="d"><small>${JOURS[dt.getDay()]}</small><b>${dt.getDate()}</b><small>${MOIS_C[dt.getMonth()]}</small></div>
+        <div><h4>${e.d.name}</h4><p>${e.w?e.w+" · ":""}${e.d.place}${k2>=0&&k2<=30?` · <strong style="color:var(--art)">dans ${k2} j</strong>`:""}</p></div>
+        <a class="btn go" href="${(e.d.links.find(x=>x[2])||e.d.links[0])[1]}" target="_blank" rel="noopener">Site ↗</a>
+      </div>`;
+    }
+    html+="</section>";
+  }
+  const tbc = list.filter(d=>!d.dates);
+  if(tbc.length){
+    html+=`<section class="month"><h3>Dates à confirmer<span>${tbc.length} établissement${tbc.length>1?"s":""}</span></h3>`;
+    for(const d of tbc){
+      html+=`<div class="ev" data-cat="${d.cat}"><div class="d"><small>vers</small><b style="font-size:1rem;padding:6px 0">${d.tbc}</b></div>
+        <div><h4>${d.name}</h4><p>${d.jpo} · ${d.place}</p></div>
+        <a class="btn go" href="${d.links[0][1]}" target="_blank" rel="noopener">Vérifier ↗</a></div>`;
+    }
+    html+="</section>";
+  }
+  return html;
+}
+
+const out = document.getElementById("out");
+function render(){
+  const list = DATA.filter(matches);
+  if(!list.length){ out.innerHTML = `<p class="empty">${state.fav?"Aucun favori pour l'instant : clique sur ☆ en haut à droite d'une fiche.":"Aucun établissement ne correspond… essaie un autre mot !"}</p>`; return; }
+  out.innerHTML = state.view==="cards" ? renderCards(list) : renderCal(list);
+  out.querySelectorAll(".card,.ev").forEach((el,i)=>{ el.style.animationDelay=(Math.min(i,14)*55)+"ms"; requestAnimationFrame(()=>el.classList.add("in")); });
+}
+
+/* Prochaine JPO */
+(function(){
+  const all=[]; DATA.forEach(d=>(d.dates||[]).forEach(([dt])=>{ if(days(dt)>=0) all.push({d,dt}); }));
+  all.sort((a,b)=>a.dt.localeCompare(b.dt));
+  const el=document.getElementById("next");
+  if(!all.length){ el.remove(); return; }
+  const n=all[0], k=days(n.dt), dt=D(n.dt);
+  el.innerHTML=`<div class="count">${k===0?"Aujourd'hui":"J-"+k}</div><div><small>Prochaine porte ouverte</small><strong>${n.d.name}</strong><small>${JOURS[dt.getDay()]} ${dt.getDate()} ${MOIS[dt.getMonth()]} ${dt.getFullYear()}</small></div>`;
+})();
+
+/* Événements */
+document.getElementById("cats").addEventListener("click",e=>{
+  const b=e.target.closest(".chip"); if(!b) return;
+  state.cat=b.dataset.cat; document.querySelectorAll("#cats .chip").forEach(x=>x.classList.toggle("on",x===b)); render();
+});
+document.getElementById("zones").addEventListener("click",e=>{
+  const b=e.target.closest(".chip"); if(!b) return;
+  if(b.hasAttribute("data-fav")){ state.fav=!state.fav; b.classList.toggle("on",state.fav); }
+  else { state.zone=b.dataset.zone; document.querySelectorAll("#zones .chip[data-zone]").forEach(x=>x.classList.toggle("on",x===b)); }
+  render();
+});
+document.getElementById("q").addEventListener("input",e=>{ state.q=e.target.value.trim(); render(); });
+document.querySelector(".views").addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b) return;
+  state.view=b.dataset.view; document.querySelectorAll(".views button").forEach(x=>x.classList.toggle("on",x===b)); render();
+});
+out.addEventListener("click",e=>{
+  const f=e.target.closest("[data-fav]");
+  if(f){ const id=f.dataset.fav; favs.has(id)?favs.delete(id):favs.add(id); saveFavs();
+    f.classList.toggle("on",favs.has(id)); f.textContent=favs.has(id)?"★":"☆"; if(state.fav) render(); return; }
+  const c=e.target.closest("[data-ics]");
+  if(c){ const d=DATA.find(x=>x.id===c.dataset.ics); const n=nextDate(d); const w=(d.dates.find(x=>x[0]===n)||[])[1]; ics(d,n,w); }
+});
+const tt=document.getElementById("totop");
+addEventListener("scroll",()=>tt.classList.toggle("show",scrollY>500),{passive:true});
+tt.onclick=()=>scrollTo({top:0});
+
+render();
+</script>
+</body>
+</html>
